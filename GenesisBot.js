@@ -14,9 +14,10 @@ botClient.on("message" , function(message) {
             if (botClient.memberHasRole(message.author , newcomerID))
             {
                 botClient.addMemberToRole(message.author , spectatorID , function(err){
-                    if (err != null || err != undefined)
+                    if (err)
                     {
                         console.log("Unable to turn member " + message.author.name + " to a Spectator!");
+                        console.log("Error: " , err);
                     }
                     else
                     {
@@ -25,33 +26,7 @@ botClient.on("message" , function(message) {
                         if (err != null || err != undefined)
                         {
                             console.log("Unable to remove newcomer role");
-                        }    
-                        else
-                        {
-                            console.log("And it worked!");
-                        }
-                        });
-                    }
-                });
-            }
-        }
-        
-        else if (message.content == "!agree")
-        {
-            if (botClient.memberHasRole(message.author , newcomerID))
-            {
-                botClient.addMemberToRole(message.author , crewID , function(err){
-                    if (err != null || err != undefined)
-                    {
-                        console.log("Unable to turn member " + message.author.name + " to a Crew!");
-                    }
-                    else
-                    {
-                        console.log("Member turned! Now to remove the newcomer role...");
-                        botClient.removeMemberFromRole(message.author , newcomerID , function(err){
-                        if (err != null || err != undefined)
-                        {
-                            console.log("Unable to remove newcomer role");
+                            console.log("Error: " , err);
                         }    
                         else
                         {
@@ -93,9 +68,10 @@ botClient.on("serverNewMember" , function(server , user){
     if (server.id == "207045717687009280")
     {
         botClient.addMemberToRole(user , "207396529386946560" , function(err){
-            if (err != null || err != undefined)
+            if (err)
             {
-                console.log("Unable to turn member " + message.author.name + " to a newcomer!");
+                console.log("Unable to turn member " + user.name + " to a newcomer!");
+                console.log("Error: " , err);
             }
             else
             {
@@ -106,9 +82,10 @@ botClient.on("serverNewMember" , function(server , user){
 })
 
 botClient.loginWithToken("MjA5Njg1NTIyNTA1OTI0NjA5.CoD0XA.r3A6B-rbMsrTkSxGx296X7MfeFg" , function (err) {
-    if (err != null || err != undefined)
+    if (err)
     {
         console.log("Bot login failed!");
+        console.log("Error: " , err);
     }
     else
     {
