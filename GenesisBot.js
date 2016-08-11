@@ -1,6 +1,11 @@
+function retrieveText(fileName)
+{
+    return fs.readFileSync(fileName);
+}
+
 var fs = require("fs");
-var token = fs.readFileSync("token.txt");
 var Discord = require("discord.js");
+var token = String(retrieveText("token.txt"));
 var botClient = new Discord.Client({autoReconnect: true});
 
 var spectatorID = "207396959789514752";
