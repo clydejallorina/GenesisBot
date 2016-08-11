@@ -1,7 +1,8 @@
 var fs = require("fs");
-var token = fs.readFileSync("token.txt");
 var Discord = require("discord.js");
 var botClient = new Discord.Client({autoReconnect: true});
+
+var token = fs.readFileSync("token.txt", {encoding: 'utf8'}).trim();
 
 var spectatorID = "207396959789514752";
 var newcomerID = "207396529386946560";
@@ -82,6 +83,7 @@ botClient.on("serverNewMember" , function(server , user){
     }
 })
 
+console.log("Logging in with token", token);
 botClient.loginWithToken(token , function (err) {
     if (err)
     {
