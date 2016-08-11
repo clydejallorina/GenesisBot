@@ -1,8 +1,3 @@
-function retrieveText(fileName)
-{
-    return fs.readFileSync(fileName);
-}
-
 var fs = require("fs");
 var Discord = require("discord.js");
 var token = String(retrieveText("token.txt"));
