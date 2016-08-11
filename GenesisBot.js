@@ -1,4 +1,5 @@
 var fs = require("fs");
+var token = fs.readFileSync("token.txt");
 var Discord = require("discord.js");
 var botClient = new Discord.Client({autoReconnect: true});
 
@@ -81,7 +82,7 @@ botClient.on("serverNewMember" , function(server , user){
     }
 })
 
-botClient.loginWithToken("MjA5Njg1NTIyNTA1OTI0NjA5.CoD0XA.r3A6B-rbMsrTkSxGx296X7MfeFg" , function (err) {
+botClient.loginWithToken(token , function (err) {
     if (err)
     {
         console.log("Bot login failed!");
