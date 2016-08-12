@@ -20,7 +20,8 @@ client.on("message" , function(message) {
                     if (err) {
                         winston.error("Error giving user", message.author.name, "the Spectator role:", err);
                     } else {
-                        winston.info("Spectator role added to user " + message.author.name + ". Removing newcomer role...");
+                        winston.info("Spectator role added to user " + message.author.name + ". Removing newcomer role and deleting !join message...");
+                        client.deleteMessage(message);
                         client.removeMemberFromRole(message.author , newcomerID , function(err){
                             if (err) {
                                 winston.error("Error removing newcomer role:", err);
