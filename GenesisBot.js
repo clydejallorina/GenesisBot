@@ -23,7 +23,8 @@ botClient.on("message" , function(message) {
                     }
                     else
                     {
-                        console.log("Member turned! Now to remove the newcomer role...");
+                        console.log("Member turned! Now to delete the !join message and remove the newcomer role...");
+                        botClient.deleteMessage(message);
                         botClient.removeMemberFromRole(message.author , newcomerID , function(err){
                         if (err != null || err != undefined)
                         {
