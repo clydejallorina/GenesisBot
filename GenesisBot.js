@@ -1,5 +1,6 @@
 const fs = require("fs");
 const _ = require('lodash');
+const spawn = require('child_process').spawnSync;
 const winston = require('winston');
 const Discord = require("discord.js");
 const client = new Discord.Client({autoReconnect: true});
@@ -40,6 +41,11 @@ client.on("message" , function(message) {
             client.reply(message, "Role " + roleName + " has id " + role.id);
         else
             client.reply(message, "Role not found! (Role lookup is case sensitive!)");
+    } else if (message.content == "=restart") {
+        client.destroy(function(err){
+            winston.info("Restart in progress.");
+            spawn('node GenesisBot.js'); //Barz, idk how this will go. I definitely hope this works without crashing or anything
+        })
     }
 });
 
