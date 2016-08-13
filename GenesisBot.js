@@ -55,7 +55,7 @@ client.on("serverNewMember", function(server, user) {
             if (err) {
                 winston.error("Error giving user", user.name, "the newcomer role:", err);
             } else {
-                winston.info("A new member,", user, "joined and was given the newcomer role.");
+                winston.info("A new member,", user.name, "joined and was given the newcomer role.");
             }
         });
     }
