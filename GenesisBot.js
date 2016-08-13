@@ -6,23 +6,17 @@ const client = new Discord.Client({autoReconnect: true});
 
 const config = _.merge(require('./config.json'), require('./secrets.json'));
 
-// role ids
-// TODO: replace these with name lookups at some point
-var spectatorID = "207396959789514752";
-var newcomerID = "207396529386946560";
-var crewID = "209692193785380864";
-
 client.on("message" , function(message) {
     if (message.content.startsWith("!")) {
         if (message.content == "!join") {
-            if (client.memberHasRole(message.author, newcomerID)) {
-                client.addMemberToRole(message.author, spectatorID, function(err) {
+            if (client.memberHasRole(message.author, message.channel.server.roles.get("name" , "newcomer").id)) {
+                client.addMemberToRole(message.author, message.channel.server.roles.get("name" , "Spectator").id, function(err) {
                     if (err) {
                         winston.error("Error giving user", message.author.name, "the Spectator role:", err);
                     } else {
                         winston.info("Spectator role added to user " + message.author.name + ". Removing newcomer role and deleting !join message...");
                         client.deleteMessage(message);
-                        client.removeMemberFromRole(message.author , newcomerID , function(err){
+                        client.removeMemberFromRole(message.author , message.channel.server.roles.get("name" , "newcomer").id , function(err){
                             if (err) {
                                 winston.error("Error removing newcomer role:", err);
                             } else {
@@ -51,7 +45,7 @@ client.on("message" , function(message) {
 
 client.on("serverNewMember", function(server, user) {
     if (server.id == config.serverID) {
-        client.addMemberToRole(user, newcomerID, function(err) {
+        client.addMemberToRole(user, message.channel.server.roles.get("name" , "newcomer").id, function(err) {
             if (err) {
                 winston.error("Error giving user", user.name, "the newcomer role:", err);
             } else {
