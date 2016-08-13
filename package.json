@@ -1,0 +1,32 @@
+{
+  "name": "GenesisBot",
+  "version": "1.0.0",
+  "description": "A bot for the Genesis Project discord",
+  "main": "GenesisBot.js",
+  "scripts": {
+    "test": "echo \"haha, you think we have tests right now?\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clydejallorina/GenesisBot.git"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "thegenesisproject"
+  ],
+  "author": "Clyde Jallorina",
+  "contributors": [
+    "Erin <sylphofelectricity@gmail.com> (https://iwxzr.tumblr.com)"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clydejallorina/GenesisBot/issues"
+  },
+  "homepage": "https://github.com/clydejallorina/GenesisBot",
+  "dependencies": {
+    "discord.js": "^8.1.0",
+    "lodash": "^4.15.0",
+    "winston": "^2.2.0"
+  }
+}
