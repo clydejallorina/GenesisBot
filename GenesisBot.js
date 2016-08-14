@@ -50,7 +50,7 @@ client.on("message" , function(message) {
     } else if (message.content == "=restart") {
         client.destroy(function(err){
             winston.info("Restart in progress.");
-            spawn('node GenesisBot.js'); //Barz, idk how this will go. I definitely hope this works without crashing or anything
+            process.exit(14);
         })
     }
 });
