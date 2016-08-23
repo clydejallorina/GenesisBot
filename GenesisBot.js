@@ -1,6 +1,6 @@
 const fs = require("fs");
 const _ = require('lodash');
-const spawn = require('child_process').spawnSync;
+const child_process = require('child_process');
 const winston = require('winston');
 const Discord = require("discord.js");
 const client = new Discord.Client({autoReconnect: true});
@@ -12,6 +12,7 @@ const config = _.merge(require('./config.json'), require('./secrets.json'));
 var spectatorID = "207396959789514752";
 var newcomerID = "207396529386946560";
 var crewID = "209692193785380864";
+
 
 client.on("message" , function(message) {
     if (message.content.startsWith("!")) {
@@ -76,3 +77,10 @@ client.loginWithToken(config.token, function (err) {
         winston.info("Bot login successful!");
     }
 });
+
+client.on('ready', function() {
+    child_process.exec('git rev-parse --short HEAD', (error, stdout, stderr) => {
+        client.setPlayingGame('commit ' + stdout.trim());
+    });
+});
+
