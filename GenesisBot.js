@@ -34,9 +34,10 @@ client.on("message" , function(message) {
                 });
             }
         }
-    } else if (message.content == "=logout") {
+    } else if (message.content == "=halt") {
         client.destroy(function(err){
             winston.info("Are you fucking kidding me?! *dies a gristly death*");
+            process.exit(14);
         });
     } else if (message.content.startsWith("=getroleid")) {
         // drop the =getroleid at the beginning of the string
@@ -50,7 +51,7 @@ client.on("message" , function(message) {
     } else if (message.content == "=restart") {
         client.destroy(function(err){
             winston.info("Restart in progress.");
-            process.exit(14);
+            process.exit();
         })
     }
 });
